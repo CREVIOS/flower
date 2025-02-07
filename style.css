@@ -1,10 +1,120 @@
 *,
-*::after,
-*::before {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+    *::after,
+    *::before {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --dark-color: #000000;
+    }
+    body {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: var(--dark-color);
+      overflow: hidden;
+      perspective: 1000px;
+      padding: 50px 0;
+    }
+    .not-loaded * {
+      animation-play-state: paused !important;
+    }
+    
+    /* ========= Enhanced Night Background ========= */
+    .night {
+      position: fixed;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 100%;
+      /* A radial gradient with a subtle starry overlay */
+      background: radial-gradient(circle, rgba(15,15,40,0.9) 0%, rgba(0,0,20,0.9) 100%);
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="5" cy="5" r="2" fill="%23ffffff" opacity="0.1"/></svg>');
+      background-size: 10vmin 10vmin;
+      filter: blur(0.1vmin);
+    }
+    
+    /* ========= Original Flowers & Grass CSS ========= */
+    /* (Keep your existing CSS for the flowers, leaves, grass, etc. here.)
+       For brevity, this sample shows only a few rules.
+       Paste your full CSS code below or in your external style.css file. */
+    
+    .flowers {
+      position: relative;
+      transform: scale(0.9);
+    }
+    .flower {
+      position: absolute;
+      bottom: 10vmin;
+      transform-origin: bottom center;
+      z-index: 10;
+      --fl-speed: 0.8s;
+    }
+    /* … (all your flower, leaf, line, and animation keyframes) … */
+    
+    
+    /* ========= New Butterfly Styles ========= */
+    .butterfly {
+      position: absolute;
+      top: 15%;
+      left: 80%;
+      width: 4vmin;
+      height: 4vmin;
+      z-index: 200;
+      /* The butterfly will fly in a gentle looping path */
+      animation: butterfly-fly 12s infinite ease-in-out;
+    }
+    .butterfly__wing {
+      position: absolute;
+      top: 0;
+      width: 2vmin;
+      height: 3vmin;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      border-radius: 50%;
+      transform-origin: center;
+      box-shadow: 0 0 1vmin rgba(255,255,255,0.5);
+    }
+    .butterfly__wing--left {
+      left: 0;
+      animation: flap-left 0.8s infinite ease-in-out;
+    }
+    .butterfly__wing--right {
+      right: 0;
+      animation: flap-right 0.8s infinite ease-in-out;
+    }
+    .butterfly__body {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1vmin;
+      height: 2vmin;
+      background: #333;
+      border-radius: 1vmin;
+      transform: translate(-50%, -50%);
+    }
+    
+    /* Keyframes for wing flapping */
+    @keyframes flap-left {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(-20deg); }
+    }
+    @keyframes flap-right {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(20deg); }
+    }
+    
+    /* Keyframes for the butterfly’s flight path */
+    @keyframes butterfly-fly {
+      0%   { transform: translate(0, 0) scale(1); }
+      25%  { transform: translate(-10vmin, 5vmin) scale(1.1); }
+      50%  { transform: translate(-20vmin, 0) scale(1); }
+      75%  { transform: translate(-10vmin, -5vmin) scale(0.9); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    
 
 :root {
   --dark-color: #000000;
